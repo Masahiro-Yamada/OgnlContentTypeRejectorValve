@@ -1,3 +1,4 @@
+package com.github.user.masahiro-yamada.ognlcontenttyperejector;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
