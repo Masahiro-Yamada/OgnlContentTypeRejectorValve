@@ -39,9 +39,11 @@ public class OgnlContentTypeRejectorValve extends ValveBase {
             ServletException {
         final String contentType = request.getContentType();
         // reject when content-Type contains OGNL
-        if ((contentType != null) && contentType.contains("%{")) {
-            ((HttpServletResponse)response).sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
+        if (contentType != null) {
+            if (contentType.contains("%{") || contentType.contains("${")) {
+                ((HttpServletResponse)response).sendError(HttpServletResponse.SC_BAD_REQUEST);
+                return;
+            }
         }
         getNext().invoke(request, response);
     }
